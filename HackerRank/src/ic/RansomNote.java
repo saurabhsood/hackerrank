@@ -17,8 +17,7 @@ public class RansomNote {
 	        for(int ransom_i=0; ransom_i < n; ransom_i++){
 	            ransom[ransom_i] = in.next().trim();
 	        }
-	        boolean chk = false;
-	               
+	        boolean chk = false;	              
 	        for (int i =0; i <  ransom.length ; i++)
 	        {
 	            chk = false;
