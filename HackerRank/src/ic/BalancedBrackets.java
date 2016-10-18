@@ -9,30 +9,17 @@ public class BalancedBrackets {
     public static boolean isBalanced(String expression) {
       
     	char [] a = expression.toCharArray();
-    	List<String> data = new LinkedList<>();
-    	Stack<Character>k = new Stack<>();
-    	boolean chk= false;
+    	Stack<Character>data = new Stack<>();
     	for(int i =0; i <a.length  ;i++)
-    	{
-    		chk = false;		
-    		
-    		int size=data.size()-1;
-    		if(size < 0)
-    		{
-    			chk = true;
-    		}
-    		
-    		
+    	{    		
     		if(a[i] =='}')
-    		{    			
-    			if(chk)
+    		{    	
+    			if(data.isEmpty())
     			{
-    				return false;
-    			}
-    			
-    			if(data.get(size).equals("{"))
-    			{
-    				data.remove(size);
+    				return false;    			
+    			}    			 			
+    			else if(data.pop() =='{')
+    			{    				
     				continue;
     			}
     			else
@@ -41,14 +28,13 @@ public class BalancedBrackets {
     			}   			
     		}
     		else if(a[i] ==')')
-    		{
-    			if(chk)
+    		{    			
+    			if(data.isEmpty())
     			{
-    				return false;
-    			}
-    			if(data.get(size).equals("("))
+    				return false;    			
+    			}    			 			
+    			else if(data.pop() =='(')
     			{
-    				data.remove(size);
     				continue;
     			}
     			else
@@ -57,14 +43,13 @@ public class BalancedBrackets {
     			}  
     		}
     		else if(a[i] ==']')
-    		{
-    			if(chk)
+    		{    			
+    			if(data.isEmpty())
     			{
-    				return false;
-    			}
-    			if(data.get(size).equals("["))
+    				return false;    			
+    			}    			 			
+    			else if(data.pop() =='[')
     			{
-    				data.remove(size);
     				continue;
     			}
     			else
@@ -74,7 +59,7 @@ public class BalancedBrackets {
     		}
     		else
     		{
-    			data.add(a[i]+"");    			
+    			data.push(a[i]);    			
     		}
     	}
     	
