@@ -3,19 +3,56 @@ import java.util.Scanner;
 
 public class QueueTwoStacks {
     public static class MyQueue<T> {
+        int size=100;
+        int cp=0;
+        Integer[] x;
         
-        int[] x = new int[10];
-        int[] y = new int[10];
-
-        public void enqueue(T value) { // Push onto newest stack
+        MyQueue(){
+        	x = new Integer[size];
+        }
+        
+        public void enqueue(int value) { // Push onto newest stack
             
+        	if(cp== size)
+        	{
+        		int newsize = size*2;
+        		Integer[] temp = new Integer[newsize];
+        		
+        		for(int i =0 ; i <size;i++)
+        		{
+        			temp[i]= x[i];
+        		}
+        		x =temp;
+        		size = newsize;        		
+        	}
+
+        	x[cp]= value;
+        	cp++;
         }
 
-        public T peek() {
+        public int peek() {
+        	return x[0];
              
         }
 
-        public T dequeue() {
+        public int dequeue() {
+            int de = x[0];
+            
+            for(int i=0; i < size;i++)
+            {
+            	if(i== size-1)
+            	{
+            		x[i] = null;
+            		
+            	}
+            	else
+            	{
+            		x[i]=x[i+1];
+            	}
+            	
+            }
+            cp--;
+            return de;
             
         }
     }
